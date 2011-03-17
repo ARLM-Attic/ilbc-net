@@ -49,8 +49,8 @@ namespace iLBC {
             state_bits = new int[ilbc_constants.ULP_CLASSES + 2];
             extra_cb_index = new int[ilbc_constants.CB_NSTAGES, ilbc_constants.ULP_CLASSES + 2];
             extra_cb_gain = new int[ilbc_constants.CB_NSTAGES, ilbc_constants.ULP_CLASSES + 2];
-            cb_index = new int[ilbc_constants.NSUB_MAX - 2, ilbc_constants.CB_NSTAGES, ilbc_constants.ULP_CLASSES + 2];
-            cb_gain = new int[ilbc_constants.NSUB_MAX - 2, ilbc_constants.CB_NSTAGES, ilbc_constants.ULP_CLASSES + 2];
+            cb_index = new int[ilbc_constants.NSUB_MAX, ilbc_constants.CB_NSTAGES, ilbc_constants.ULP_CLASSES + 2];
+            cb_gain = new int[ilbc_constants.NSUB_MAX, ilbc_constants.CB_NSTAGES, ilbc_constants.ULP_CLASSES + 2];
 
             if (mode == 20) {
                 blockl = ilbc_constants.BLOCKL_20MS;
@@ -81,16 +81,16 @@ namespace iLBC {
                 state_short_len = ilbc_constants.STATE_SHORT_LEN_30MS;
                 /* ULP init */
                 //           ULP_inst=&ULP_30msTbl;
-                System.Array.Copy(ilbc_constants.lsf_bits_30ms, 0, lsf_bits, 0, 6);
+                System.Array.Copy(ilbc_constants.lsf_bits_30ms, 0, lsf_bits, 0, ilbc_constants.lsf_bits_30ms.Length);
                 System.Array.Copy(ilbc_constants.start_bits_30ms, 0, start_bits, 0, ilbc_constants.start_bits_30ms.Length);
                 System.Array.Copy(ilbc_constants.startfirst_bits_30ms, 0, startfirst_bits, 0, ilbc_constants.startfirst_bits_30ms.Length);
                 System.Array.Copy(ilbc_constants.scale_bits_30ms, 0, scale_bits, 0, ilbc_constants.scale_bits_30ms.Length);
                 System.Array.Copy(ilbc_constants.state_bits_30ms, 0, state_bits, 0, ilbc_constants.state_bits_30ms.Length);
-                System.Array.Copy(ilbc_constants.extra_cb_index_30ms, 0, extra_cb_index, 0, ilbc_constants.CB_NSTAGES);
-                System.Array.Copy(ilbc_constants.extra_cb_gain_30ms, 0, extra_cb_gain, 0, ilbc_constants.CB_NSTAGES);
+                System.Array.Copy(ilbc_constants.extra_cb_index_30ms, 0, extra_cb_index, 0, ilbc_constants.extra_cb_index_30ms.Length);
+                System.Array.Copy(ilbc_constants.extra_cb_gain_30ms, 0, extra_cb_gain, 0, ilbc_constants.extra_cb_gain_30ms.Length);
                 //        System.out.println("nsubmax vaut: " + NSUB_MAX + " vs " + NSUB_30MS + ", alors que la taille de la table est: " + cb_index_30ms.Length + " vs " + cb_index.Length);
-                System.Array.Copy(ilbc_constants.cb_index_30ms, 0, cb_index, 0, ilbc_constants.NSUB_30MS);
-                System.Array.Copy(ilbc_constants.cb_gain_30ms, 0, cb_gain, 0, ilbc_constants.NSUB_30MS);
+                System.Array.Copy(ilbc_constants.cb_index_30ms, 0, cb_index, 0, ilbc_constants.cb_index_30ms.Length);
+                System.Array.Copy(ilbc_constants.cb_gain_30ms, 0, cb_gain, 0, ilbc_constants.cb_gain_30ms.Length);
             }
 
             //     for (int i = 0; i < NSUB_MAX; i++) {
