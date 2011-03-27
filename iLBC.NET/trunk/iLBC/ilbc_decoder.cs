@@ -17,24 +17,24 @@ namespace iLBC {
         int last_lag;
         int prev_enh_pl;
         float per;
-        float[] prevResidual;
+        readonly float[] prevResidual;
         long seed;
-        float[] prevLpc;
-
-        ilbc_ulp ULP_inst = null;
-
-        float[] syntMem;
-        float[] lsfdeqold;
-        float[] old_syntdenum;
-        float[] hpomem;
-        int use_enhancer;
-        float[] enh_buf;
-        float[] enh_period;
+        readonly float[] prevLpc;
+        
+        readonly ilbc_ulp ULP_inst;
+        
+        readonly float[] syntMem;
+        readonly float[] lsfdeqold;
+        readonly float[] old_syntdenum;
+        readonly float[] hpomem;
+        readonly int use_enhancer;
+        readonly float[] enh_buf;
+        readonly float[] enh_period;
 
         // La plupart des variables globales sont dans ilbc_constants.etc...
 
 
-        void syntFilter(
+        private static void syntFilter(
             float[] Out,     /* (i/o) Signal to be filtered */
             int Out_idx,
             float[] a,       /* (i) LP parameters */
@@ -116,7 +116,7 @@ namespace iLBC {
          *  interpolation of lsf coefficients for the decoder
          *--------------------------------------------------------------*/
 
-        public void LSFinterpolate2a_dec(
+        private static void LSFinterpolate2a_dec(
            float[] a,           /* (o) lpc coefficients for a sub-frame */
            float[] lsf1,    /* (i) first lsf coefficient vector */
            float[] lsf2,    /* (i) second lsf coefficient vector */
@@ -134,7 +134,7 @@ namespace iLBC {
          *  obtain dequantized lsf coefficients from quantization index
          *--------------------------------------------------------------*/
 
-        void SimplelsfDEQ(
+        private static void SimplelsfDEQ(
             float[] lsfdeq,    /* (o) dequantized lsf coefficients */
             int[] index,         /* (i) quantization index */
             int lpc_n           /* (i) number of LPCs */
@@ -177,7 +177,7 @@ namespace iLBC {
          *  obtain synthesis and weighting filters form lsf coefficients
          *---------------------------------------------------------------*/
 
-        void DecoderInterpolateLSF(
+        private void DecoderInterpolateLSF(
             float[] syntdenum, /* (o) synthesis filter coefficients */
             float[] weightdenum, /* (o) weighting denumerator
                                   coefficients */
@@ -239,7 +239,7 @@ namespace iLBC {
         }
 
 
-        public void index_conv_dec(int[] index)          /* (i/o) Codebook indexes */
+        private static void index_conv_dec(int[] index)          /* (i/o) Codebook indexes */
         {
             int k;
 
@@ -255,7 +255,7 @@ namespace iLBC {
             }
         }
 
-        public void hpOutput(
+        private static void hpOutput(
              float[] In,  /* (i) vector to filter */
              int len,/* (i) length of vector to filter */
              float[] Out, /* (o) the resulting filtered vector */
@@ -302,7 +302,7 @@ namespace iLBC {
          * downsample (LP filter and decimation)
          *---------------------------------------------------------------*/
 
-        void DownSample(
+        private static void DownSample(
             float[] In,     /* (i) input samples */
             int in_idx,
             float[] Coef,   /* (i) filter coefficients */
@@ -387,7 +387,7 @@ namespace iLBC {
          * according to the squared-error criterion
          *---------------------------------------------------------------*/
 
-        public int NearestNeighbor(
+        private static int NearestNeighbor(
             //             int   index[],   /* (o) index of array element closest
             //                        to value */
                        float[] array,   /* (i) data array */
@@ -417,7 +417,7 @@ namespace iLBC {
          * compute cross correlation between sequences
          *---------------------------------------------------------------*/
 
-        public void mycorr1(
+        private static void mycorr1(
              float[] corr,    /* (o) correlation of seq1 and seq2 */
              int corr_idx,
              float[] seq1,    /* (i) first sequence */
@@ -451,7 +451,7 @@ namespace iLBC {
          * upsample finite array assuming zeros outside bounds
          *---------------------------------------------------------------*/
 
-        public void enh_upsample(
+        private static void enh_upsample(
                   float[] useq1,   /* (o) upsampled output sequence */
                   float[] seq1,/* (i) unupsampled sequence */
                   int dim1,       /* (i) dimension seq1 */
@@ -556,7 +556,7 @@ namespace iLBC {
          * sampling rate
          *---------------------------------------------------------------*/
 
-        public float refiner(
+        private static float refiner(
              float[] seg,         /* (o) segment array */
              int seg_idx,
              float[] idata,       /* (i) original data buffer */
@@ -663,7 +663,7 @@ namespace iLBC {
          * find the smoothed output data
          *---------------------------------------------------------------*/
 
-        public void smath(
+        private static void smath(
                float[] odata,   /* (o) smoothed output */
                int odata_idx,
                float[] sseq,/* (i) said second sequence of waveforms */
@@ -759,7 +759,7 @@ namespace iLBC {
          * get the pitch-synchronous sample sequence
          *---------------------------------------------------------------*/
 
-        public void getsseq(
+        private static void getsseq(
              float[] sseq,    /* (o) the pitch-synchronous sequence */
              float[] idata,       /* (i) original data */
              int idatal,         /* (i) dimension of data */
@@ -846,7 +846,7 @@ namespace iLBC {
          * idata+centerStartPos+ENH_BLOCKL-1
          *---------------------------------------------------------------*/
 
-        public void enhancer(
+        private static void enhancer(
                   float[] odata,       /* (o) smoothed block, dimension blockl */
                   int odata_idx,
                   float[] idata,       /* (i) data buffer used for enhancing */
@@ -877,7 +877,7 @@ namespace iLBC {
          * cross correlation
          *---------------------------------------------------------------*/
 
-        public float xCorrCoef(
+        private static float xCorrCoef(
                 float[] target,      /* (i) first array */
                 int t_idx,
                 float[] regressor,   /* (i) second array */
@@ -905,7 +905,7 @@ namespace iLBC {
          * interface for enhancer
          *---------------------------------------------------------------*/
 
-        int enhancerInterface(
+        private int enhancerInterface(
                   float[] _out,                     /* (o) enhanced signal */
                   float[] _in)                      /* (i) unenhanced signal */
         {
@@ -1108,7 +1108,7 @@ namespace iLBC {
          *  of last subframe at given lag.
          *---------------------------------------------------------------*/
 
-        public void compCorr(
+        private static void compCorr(
                  float[] cc,      /* (o) cross correlation coefficient */
                  float[] gc,      /* (o) gain */
                  float[] pm,
@@ -1150,7 +1150,7 @@ namespace iLBC {
             }
         }
 
-        public void doThePLC(
+        private void doThePLC(
                  float[] PLCresidual, /* (o) concealed residual */
                  float[] PLClpc,      /* (o) concealed LP parameters */
                  int PLI,        /* (i) packet loss indicator
@@ -1389,7 +1389,7 @@ namespace iLBC {
          *  frame residual decoder function (subrutine to iLBC_decode)
          *---------------------------------------------------------------*/
 
-        public void Decode(
+        private void Decode(
            float[] decresidual,             /* (o) decoded residual frame */
            int start,                      /* (i) location of start
                                               state */

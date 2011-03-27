@@ -9,7 +9,7 @@ namespace iLBC {
     /**
      * @author Jean Lorchat
      */
-    public class bitpack {
+    internal class bitpack {
 
         int firstpart;
         int rest;

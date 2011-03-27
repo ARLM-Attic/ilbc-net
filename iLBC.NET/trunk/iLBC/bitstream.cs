@@ -9,7 +9,7 @@ namespace iLBC {
     /**
      * @author Jean Lorchat
      */
-    public class bitstream {
+    internal class bitstream {
 
         int bitcount;
 
@@ -41,7 +41,7 @@ namespace iLBC {
          *  remaining least significant bits
          *---------------------------------------------------------------*/
 
-        public bitpack packsplit(
+        internal bitpack packsplit(
            int index,                 /* (i) the value to split */
            int bitno_firstpart,    /* (i) number of bits in most
                                           significant part */

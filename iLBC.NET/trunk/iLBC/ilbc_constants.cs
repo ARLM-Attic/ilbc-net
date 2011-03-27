@@ -12,137 +12,137 @@ namespace iLBC {
     static class ilbc_constants {
         /* general codec settings */
 
-        internal static float FS = 8000.0f;
-        internal static int BLOCKL_20MS = 160;
-        internal static int BLOCKL_30MS = 240;
-        internal static int BLOCKL_MAX = 240;
-        internal static int NSUB_20MS = 4;
-        internal static int NSUB_30MS = 6;
-        internal static int NSUB_MAX = 6;
-        internal static int NASUB_20MS = 2;
-        internal static int NASUB_30MS = 4;
-        internal static int NASUB_MAX = 4;
-        internal static int SUBL = 40;
-        internal static int STATE_LEN = 80;
-        internal static int STATE_SHORT_LEN_30MS = 58;
-        internal static int STATE_SHORT_LEN_20MS = 57;
+        internal const float FS = 8000.0f;
+        internal const int BLOCKL_20MS = 160;
+        internal const int BLOCKL_30MS = 240;
+        internal const int BLOCKL_MAX = 240;
+        internal const int NSUB_20MS = 4;
+        internal const int NSUB_30MS = 6;
+        internal const int NSUB_MAX = 6;
+        internal const int NASUB_20MS = 2;
+        internal const int NASUB_30MS = 4;
+        internal const int NASUB_MAX = 4;
+        internal const int SUBL = 40;
+        internal const int STATE_LEN = 80;
+        internal const int STATE_SHORT_LEN_30MS = 58;
+        internal const int STATE_SHORT_LEN_20MS = 57;
 
         /* LPC settings */
 
-        internal static int LPC_FILTERORDER = 10;
-        internal static float LPC_CHIRP_SYNTDENUM = (float) 0.9025;
-        internal static float LPC_CHIRP_WEIGHTDENUM = (float) 0.4222;
-        internal static int LPC_LOOKBACK = 60;
-        internal static int LPC_N_20MS = 1;
-        internal static int LPC_N_30MS = 2;
-        internal static int LPC_N_MAX = 2;
-        internal static int LPC_ASYMDIFF = 20;
-        internal static float LPC_BW = 60.0f;
-        internal static float LPC_WN = 1.0001f;
-        internal static int LSF_NSPLIT = 3;
-        internal static int LSF_NUMBER_OF_STEPS = 4;
-        internal static int LPC_HALFORDER = (LPC_FILTERORDER / 2);
+        internal const int LPC_FILTERORDER = 10;
+        internal const float LPC_CHIRP_SYNTDENUM = (float) 0.9025;
+        internal const float LPC_CHIRP_WEIGHTDENUM = (float) 0.4222;
+        internal const int LPC_LOOKBACK = 60;
+        internal const int LPC_N_20MS = 1;
+        internal const int LPC_N_30MS = 2;
+        internal const int LPC_N_MAX = 2;
+        internal const int LPC_ASYMDIFF = 20;
+        internal const float LPC_BW = 60.0f;
+        internal const float LPC_WN = 1.0001f;
+        internal const int LSF_NSPLIT = 3;
+        internal const int LSF_NUMBER_OF_STEPS = 4;
+        internal const int LPC_HALFORDER = (LPC_FILTERORDER / 2);
 
         /* cb settings */
 
-        internal static int CB_NSTAGES = 3;
-        internal static int CB_EXPAND = 2;
-        internal static int CB_MEML = 147;
-        internal static int CB_HALFFILTERLEN = 4;
-        internal static int CB_FILTERLEN = 2 * CB_HALFFILTERLEN;
-        internal static int CB_RESRANGE = 34;
-        internal static float CB_MAXGAIN = (float) 1.3;
+        internal const int CB_NSTAGES = 3;
+        internal const int CB_EXPAND = 2;
+        internal const int CB_MEML = 147;
+        internal const int CB_HALFFILTERLEN = 4;
+        internal const int CB_FILTERLEN = 2 * CB_HALFFILTERLEN;
+        internal const int CB_RESRANGE = 34;
+        internal const float CB_MAXGAIN = (float) 1.3;
 
         /* enhancer */
 
-        internal static int ENH_BLOCKL = 80;  /* block length */
-        internal static int ENH_BLOCKL_HALF = (ENH_BLOCKL / 2);
-        internal static int ENH_HL = 3;   /* 2*ENH_HL+1 is number blocks
+        internal const int ENH_BLOCKL = 80;  /* block length */
+        internal const int ENH_BLOCKL_HALF = (ENH_BLOCKL / 2);
+        internal const int ENH_HL = 3;   /* 2*ENH_HL+1 is number blocks
                 in said second sequence */
-        internal static int ENH_SLOP = 2;   /* max difference estimated and
+        internal const int ENH_SLOP = 2;   /* max difference estimated and
                   correct pitch period */
-        internal static int ENH_PLOCSL = 20;  /* pitch-estimates and pitch-
+        internal const int ENH_PLOCSL = 20;  /* pitch-estimates and pitch-
                     locations buffer length */
-        internal static int ENH_OVERHANG = 2;
-        internal static int ENH_UPS0 = 4;   /* upsampling rate */
-        internal static int ENH_FL0 = 3;   /* 2*FLO+1 is the length of
+        internal const int ENH_OVERHANG = 2;
+        internal const int ENH_UPS0 = 4;   /* upsampling rate */
+        internal const int ENH_FL0 = 3;   /* 2*FLO+1 is the length of
                  each filter */
-        internal static int ENH_VECTL = (ENH_BLOCKL + 2 * ENH_FL0);
-        internal static int ENH_CORRDIM = (2 * ENH_SLOP + 1);
-        internal static int ENH_NBLOCKS = (BLOCKL_MAX / ENH_BLOCKL);
-        internal static int ENH_NBLOCKS_EXTRA = 5;
-        internal static int ENH_NBLOCKS_TOT = 8;   /* ENH_NBLOCKS +
+        internal const int ENH_VECTL = (ENH_BLOCKL + 2 * ENH_FL0);
+        internal const int ENH_CORRDIM = (2 * ENH_SLOP + 1);
+        internal const int ENH_NBLOCKS = (BLOCKL_MAX / ENH_BLOCKL);
+        internal const int ENH_NBLOCKS_EXTRA = 5;
+        internal const int ENH_NBLOCKS_TOT = 8;   /* ENH_NBLOCKS +
                      ENH_NBLOCKS_EXTRA */
-        internal static int ENH_BUFL = (ENH_NBLOCKS_TOT) * ENH_BLOCKL;
-        internal static float ENH_ALPHA0 = 0.05f;
+        internal const int ENH_BUFL = (ENH_NBLOCKS_TOT) * ENH_BLOCKL;
+        internal const float ENH_ALPHA0 = 0.05f;
 
         /* Down sampling */
 
-        internal static int FILTERORDER_DS = 7;
-        internal static int DELAY_DS = 3;
-        internal static int FACTOR_DS = 2;
+        internal const int FILTERORDER_DS = 7;
+        internal const int DELAY_DS = 3;
+        internal const int FACTOR_DS = 2;
 
         /* bit stream defs */
 
-        internal static int NO_OF_BYTES_20MS = 38;
-        internal static int NO_OF_BYTES_30MS = 50;
-        internal static int NO_OF_WORDS_20MS = 19;
-        internal static int NO_OF_WORDS_30MS = 25;
-        internal static int STATE_BITS = 3;
-        internal static int BYTE_LEN = 8;
-        internal static int ULP_CLASSES = 3;
+        internal const int NO_OF_BYTES_20MS = 38;
+        internal const int NO_OF_BYTES_30MS = 50;
+        internal const int NO_OF_WORDS_20MS = 19;
+        internal const int NO_OF_WORDS_30MS = 25;
+        internal const int STATE_BITS = 3;
+        internal const int BYTE_LEN = 8;
+        internal const int ULP_CLASSES = 3;
 
         /* help parameters */
 
-        internal static float DOUBLE_MAX = (float) 1.0e37;
-        internal static float EPS = (float) 2.220446049250313e-016;
-        internal static float PI = (float) 3.14159265358979323846;
-        internal static int MIN_SAMPLE = -32768;
-        internal static int MAX_SAMPLE = 32767;
-        internal static float TWO_PI = (float) 6.283185307;
-        internal static float PI2 = (float) 0.159154943;
+        internal const float DOUBLE_MAX = (float) 1.0e37;
+        internal const float EPS = (float) 2.220446049250313e-016;
+        internal const float PI = (float) 3.14159265358979323846;
+        internal const int MIN_SAMPLE = -32768;
+        internal const int MAX_SAMPLE = 32767;
+        internal const float TWO_PI = (float) 6.283185307;
+        internal const float PI2 = (float) 0.159154943;
 
         /* */
 
-        internal static int[,] lsf_bits_20ms = {   {6,0,0,0,0}, {7,0,0,0,0}, {7,0,0,0,0},
+        internal static readonly int[,] lsf_bits_20ms = {   {6,0,0,0,0}, {7,0,0,0,0}, {7,0,0,0,0},
                        {0,0,0,0,0}, {0,0,0,0,0}, {0,0,0,0,0}};
-        internal static int[] start_bits_20ms = { 2, 0, 0, 0, 0 };
-        internal static int[] startfirst_bits_20ms = { 1, 0, 0, 0, 0 };
-        internal static int[] scale_bits_20ms = { 6, 0, 0, 0, 0 };
-        internal static int[] state_bits_20ms = { 0, 1, 2, 0, 0 };
+        internal static readonly int[] start_bits_20ms = { 2, 0, 0, 0, 0 };
+        internal static readonly int[] startfirst_bits_20ms = { 1, 0, 0, 0, 0 };
+        internal static readonly int[] scale_bits_20ms = { 6, 0, 0, 0, 0 };
+        internal static readonly int[] state_bits_20ms = { 0, 1, 2, 0, 0 };
 
-        internal static int[,] extra_cb_index_20ms = { { 6, 0, 1, 0, 0 }, { 0, 0, 7, 0, 0 }, { 0, 0, 7, 0, 0 } };
-        internal static int[,] extra_cb_gain_20ms = { { 2, 0, 3, 0, 0 }, { 1, 1, 2, 0, 0 }, { 0, 0, 3, 0, 0 } };
+        internal static readonly int[,] extra_cb_index_20ms = { { 6, 0, 1, 0, 0 }, { 0, 0, 7, 0, 0 }, { 0, 0, 7, 0, 0 } };
+        internal static readonly int[,] extra_cb_gain_20ms = { { 2, 0, 3, 0, 0 }, { 1, 1, 2, 0, 0 }, { 0, 0, 3, 0, 0 } };
 
-        internal static int[, ,] cb_index_20ms = {   {{7,0,1,0,0}, {0,0,7,0,0}, {0,0,7,0,0}},
+        internal static readonly int[, ,] cb_index_20ms = {   {{7,0,1,0,0}, {0,0,7,0,0}, {0,0,7,0,0}},
                      {{0,0,8,0,0}, {0,0,8,0,0}, {0,0,8,0,0}},
                      {{0,0,0,0,0}, {0,0,0,0,0}, {0,0,0,0,0}},
                      {{0,0,0,0,0}, {0,0,0,0,0}, {0,0,0,0,0}}};
 
-        internal static int[, ,] cb_gain_20ms = {   {{1,2,2,0,0}, {1,1,2,0,0}, {0,0,3,0,0}},
+        internal static readonly int[, ,] cb_gain_20ms = {   {{1,2,2,0,0}, {1,1,2,0,0}, {0,0,3,0,0}},
                     {{1,1,3,0,0}, {0,2,2,0,0}, {0,0,3,0,0}},
                     {{0,0,0,0,0}, {0,0,0,0,0}, {0,0,0,0,0}},
                     {{0,0,0,0,0}, {0,0,0,0,0}, {0,0,0,0,0}}};
 
 
-        internal static int[,] lsf_bits_30ms = {   {6,0,0,0,0}, {7,0,0,0,0}, {7,0,0,0,0},
+        internal static readonly int[,] lsf_bits_30ms = {   {6,0,0,0,0}, {7,0,0,0,0}, {7,0,0,0,0},
                        {6,0,0,0,0}, {7,0,0,0,0}, {7,0,0,0,0}};
-        internal static int[] start_bits_30ms = { 3, 0, 0, 0, 0 };
-        internal static int[] startfirst_bits_30ms = { 1, 0, 0, 0, 0 };
-        internal static int[] scale_bits_30ms = { 6, 0, 0, 0, 0 };
-        internal static int[] state_bits_30ms = { 0, 1, 2, 0, 0 };
+        internal static readonly int[] start_bits_30ms = { 3, 0, 0, 0, 0 };
+        internal static readonly int[] startfirst_bits_30ms = { 1, 0, 0, 0, 0 };
+        internal static readonly int[] scale_bits_30ms = { 6, 0, 0, 0, 0 };
+        internal static readonly int[] state_bits_30ms = { 0, 1, 2, 0, 0 };
 
-        internal static int[,] extra_cb_index_30ms = { { 4, 2, 1, 0, 0 }, { 0, 0, 7, 0, 0 }, { 0, 0, 7, 0, 0 } };
-        internal static int[,] extra_cb_gain_30ms = { { 1, 1, 3, 0, 0 }, { 1, 1, 2, 0, 0 }, { 0, 0, 3, 0, 0 } };
+        internal static readonly int[,] extra_cb_index_30ms = { { 4, 2, 1, 0, 0 }, { 0, 0, 7, 0, 0 }, { 0, 0, 7, 0, 0 } };
+        internal static readonly int[,] extra_cb_gain_30ms = { { 1, 1, 3, 0, 0 }, { 1, 1, 2, 0, 0 }, { 0, 0, 3, 0, 0 } };
 
-        internal static int[, ,] cb_index_30ms = {   {{6,1,1,0,0}, {0,0,7,0,0}, {0,0,7,0,0}},
+        internal static readonly int[, ,] cb_index_30ms = {   {{6,1,1,0,0}, {0,0,7,0,0}, {0,0,7,0,0}},
                      {{0,7,1,0,0}, {0,0,8,0,0}, {0,0,8,0,0}},
                      {{0,7,1,0,0}, {0,0,8,0,0}, {0,0,8,0,0}},
                      {{0,7,1,0,0}, {0,0,8,0,0}, {0,0,8,0,0}},
                      {{0,0,0,0,0}, {0,0,0,0,0}, {0,0,0,0,0}},
                      {{0,0,0,0,0}, {0,0,0,0,0}, {0,0,0,0,0}}};
 
-        internal static int[, ,] cb_gain_30ms = {   {{1,2,2,0,0}, {1,2,1,0,0}, {0,0,3,0,0}},
+        internal static readonly int[, ,] cb_gain_30ms = {   {{1,2,2,0,0}, {1,2,1,0,0}, {0,0,3,0,0}},
                     {{0,2,3,0,0}, {0,2,2,0,0}, {0,0,3,0,0}},
                     {{0,1,4,0,0}, {0,1,3,0,0}, {0,0,3,0,0}},
                     {{0,1,4,0,0}, {0,1,3,0,0}, {0,0,3,0,0}},
@@ -150,27 +150,27 @@ namespace iLBC {
                     {{0,0,0,0,0}, {0,0,0,0,0}, {0,0,0,0,0}}};
 
         /* HP filters */
-        internal static float[] hpi_zero_coefsTbl = { 0.92727436f, -1.8544941f, 0.92727436f };
-        internal static float[] hpi_pole_coefsTbl = { 1.0f, -1.9059465f, 0.9114024f };
-        internal static float[] hpo_zero_coefsTbl = { 0.93980581f, -1.8795834f, 0.93980581f };
-        internal static float[] hpo_pole_coefsTbl = { 1.0f, -1.9330735f, 0.93589199f };
+        internal static readonly float[] hpi_zero_coefsTbl = { 0.92727436f, -1.8544941f, 0.92727436f };
+        internal static readonly float[] hpi_pole_coefsTbl = { 1.0f, -1.9059465f, 0.9114024f };
+        internal static readonly float[] hpo_zero_coefsTbl = { 0.93980581f, -1.8795834f, 0.93980581f };
+        internal static readonly float[] hpo_pole_coefsTbl = { 1.0f, -1.9330735f, 0.93589199f };
 
         /* LP Filter */
 
-        internal static float[] lpFilt_coefsTbl = {(float)-0.066650, (float)0.125000,
+        internal static readonly float[] lpFilt_coefsTbl = {(float)-0.066650, (float)0.125000,
                        (float)0.316650, (float)0.414063,
                        (float)0.316650, (float)0.125000,
                        (float)-0.066650};
 
         /* State quantization tables */
 
-        internal static float[] state_sq3Tbl = {
+        internal static readonly float[] state_sq3Tbl = {
     (float)-3.719849, (float)-2.177490, (float)-1.130005,
     (float)-0.309692, (float)0.444214, (float)1.329712,
     (float)2.436279, (float)3.983887
     };
 
-        internal static float[] state_frgqTbl = {
+        internal static readonly float[] state_frgqTbl = {
     (float)1.000085, (float)1.071695, (float)1.140395,
     (float)1.206868, (float)1.277188, (float)1.351503,
     (float)1.429380, (float)1.500727, (float)1.569049,
@@ -197,14 +197,14 @@ namespace iLBC {
 
         /* CB tables */
 
-        internal static int[,] search_rangeTbl ={{58,58,58}, {108,44,44},
+        internal static readonly int[,] search_rangeTbl ={{58,58,58}, {108,44,44},
                     {108,108,108}, {108,108,108}, {108,108,108}};
-        internal static int stMemLTbl = 85;
-        internal static int[] memLfTbl = { 147, 147, 147, 147 };
+        internal static readonly int stMemLTbl = 85;
+        internal static readonly int[] memLfTbl = { 147, 147, 147, 147 };
 
         /* expansion filter(s) */
 
-        internal static float[] cbfiltersTbl ={
+        internal static readonly float[] cbfiltersTbl ={
     (float)-0.034180, (float)0.108887, (float)-0.184326,
     (float)0.806152,  (float)0.713379, (float)-0.144043,
     (float)0.083740,  (float)-0.033691
@@ -212,12 +212,12 @@ namespace iLBC {
 
         /* Gain Quantization */
 
-        internal static float[] gain_sq3Tbl ={
+        internal static readonly float[] gain_sq3Tbl ={
     (float)-1.000000,  (float)-0.659973,  (float)-0.330017,
     (float)0.000000, (float)0.250000, (float)0.500000,
     (float)0.750000, (float)1.00000};
 
-        internal static float[] gain_sq4Tbl ={
+        internal static readonly float[] gain_sq4Tbl ={
     (float)-1.049988, (float)-0.900024, (float)-0.750000,
     (float)-0.599976, (float)-0.450012, (float)-0.299988,
     (float)-0.150024, (float)0.000000, (float)0.150024,
@@ -225,7 +225,7 @@ namespace iLBC {
     (float)0.750000, (float)0.900024, (float)1.049988,
     (float)1.200012};
 
-        internal static float[] gain_sq5Tbl ={
+        internal static readonly float[] gain_sq5Tbl ={
     (float)0.037476, (float)0.075012, (float)0.112488,
     (float)0.150024, (float)0.187500, (float)0.224976,
     (float)0.262512, (float)0.299988, (float)0.337524,
@@ -239,7 +239,7 @@ namespace iLBC {
     (float)1.162476, (float)1.200012};
 
         /* Enhancer - Upsamling a factor 4 (ENH_UPS0 = 4) */
-        internal static float[] polyphaserTbl ={
+        internal static readonly float[] polyphaserTbl ={
     (float)0.000000, (float)0.000000, (float)0.000000,
     (float)1.000000,
     (float)0.000000, (float)0.000000, (float)0.000000,
@@ -253,30 +253,30 @@ namespace iLBC {
     (float)0.288330,
     (float)-0.076904, (float)0.015625, (float)-0.018799};
 
-        internal static float[] enh_plocsTbl = {40.0f, 120.0f,
+        internal static readonly float[] enh_plocsTbl = {40.0f, 120.0f,
                     200.0f, 280.0f, 360.0f,
                     440.0f, 520.0f, 600.0f};
 
         /* LPC analysis and quantization */
 
-        internal static int[] dim_lsfCbTbl = { 3, 3, 4 };
-        internal static int[] size_lsfCbTbl = { 64, 128, 128 };
+        internal static readonly int[] dim_lsfCbTbl = { 3, 3, 4 };
+        internal static readonly int[] size_lsfCbTbl = { 64, 128, 128 };
 
-        internal static float[] lsfmeanTbl = {
+        internal static readonly float[] lsfmeanTbl = {
     (float)0.281738, (float)0.445801, (float)0.663330,
     (float)0.962524, (float)1.251831, (float)1.533081,
     (float)1.850586, (float)2.137817, (float)2.481445,
     (float)2.777344};
 
-        internal static float[] lsf_weightTbl_30ms = {(float)(1.0f/2.0), (float)1.0,
+        internal static readonly float[] lsf_weightTbl_30ms = {(float)(1.0f/2.0), (float)1.0,
                       (float)(2.0f/3.0),
                       (float)(1.0f/3.0), 0.0f, (float)0.0};
 
-        internal static float[] lsf_weightTbl_20ms = {(float)(3.0f/4.0), (float)(2.0/4.0),
+        internal static readonly float[] lsf_weightTbl_20ms = {(float)(3.0f/4.0), (float)(2.0/4.0),
                       (float)(1.0f/4.0), (float)(0.0)};
 
         /* Hanning LPC window */
-        internal static float[] lpc_winTbl ={
+        internal static readonly float[] lpc_winTbl ={
     (float)0.000183, (float)0.000671, (float)0.001526,
     (float)0.002716, (float)0.004242, (float)0.006104,
     (float)0.008301, (float)0.010834, (float)0.013702,
@@ -360,7 +360,7 @@ namespace iLBC {
     };
 
         /* Asymmetric LPC window */
-        internal static float[] lpc_asymwinTbl ={
+        internal static readonly float[] lpc_asymwinTbl ={
     (float)0.000061, (float)0.000214, (float)0.000458,
     (float)0.000824, (float)0.001282, (float)0.001831,
     (float)0.002472, (float)0.003235, (float)0.004120,
@@ -444,14 +444,14 @@ namespace iLBC {
     };
 
         /* Lag window for LPC */
-        internal static float[] lpc_lagwinTbl ={
+        internal static readonly float[] lpc_lagwinTbl ={
     (float)1.000100, (float)0.998890, (float)0.995569,
     (float)0.990057, (float)0.982392,
     (float)0.972623, (float)0.960816, (float)0.947047,
     (float)0.931405, (float)0.913989, (float)0.894909};
 
         /* LSF quantization*/
-        internal static float[] lsfCbTbl = {
+        internal static readonly float[] lsfCbTbl = {
     (float)0.155396, (float)0.273193, (float)0.451172,
     (float)0.390503, (float)0.648071, (float)1.002075,
     (float)0.440186, (float)0.692261, (float)0.955688,

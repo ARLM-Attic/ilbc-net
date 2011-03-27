@@ -13,27 +13,27 @@ namespace iLBC {
 
         /* codec settings for encoder instance */
 
-        public int mode;
+        internal readonly int mode;
 
-        public int blockl;
-        public int nsub;
-        public int nasub;
-        public int lpc_n;
-        public int no_of_bytes;
-        public int no_of_words;
-        public int state_short_len;
+        internal readonly int blockl;
+        internal readonly int nsub;
+        internal readonly int nasub;
+        internal readonly int lpc_n;
+        internal readonly int no_of_bytes;
+        internal readonly int no_of_words;
+        internal readonly int state_short_len;
 
-        public int[,] lsf_bits;
-        public int[] start_bits;
-        public int[] startfirst_bits;
-        public int[] scale_bits;
-        public int[] state_bits;
-        public int[,] extra_cb_index;
-        public int[,] extra_cb_gain;
-        public int[, ,] cb_index;
-        public int[, ,] cb_gain;
+        internal readonly int[,] lsf_bits;
+        internal readonly int[] start_bits;
+        internal readonly int[] startfirst_bits;
+        internal readonly int[] scale_bits;
+        internal readonly int[] state_bits;
+        internal readonly int[,] extra_cb_index;
+        internal readonly int[,] extra_cb_gain;
+        internal readonly int[, ,] cb_index;
+        internal readonly int[, ,] cb_gain;
 
-        public ilbc_ulp(int init_mode) {
+        internal ilbc_ulp(int init_mode) {
             mode = init_mode;
 
             if ((mode != 20) && (mode != 30)) {

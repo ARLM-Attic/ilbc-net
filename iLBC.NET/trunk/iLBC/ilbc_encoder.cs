@@ -11,22 +11,22 @@ namespace iLBC {
      */
     public class ilbc_encoder {
         /* encoding mode, either 20 or 30 ms */
-        int mode;
+        readonly int mode;
 
         /* analysis filter state */
-        float[] anaMem;//LPC_FILTERORDER];
+        readonly float[] anaMem;//LPC_FILTERORDER];
 
         /* old lsf parameters for interpolation */
-        float[] lsfold; //LPC_FILTERORDER];
-        float[] lsfdeqold; //LPC_FILTERORDER];
-
+        readonly float[] lsfold; //LPC_FILTERORDER];
+        readonly float[] lsfdeqold; //LPC_FILTERORDER];
+        
         /* signal buffer for LP analysis */
-        float[] lpc_buffer; //LPC_LOOKBACK + BLOCKL_MAX];
-
+        readonly float[] lpc_buffer; //LPC_LOOKBACK + BLOCKL_MAX];
+        
         /* state of input HP filter */
-        float[] hpimem; //4];
-
-        ilbc_ulp ULP_inst = null;
+        readonly float[] hpimem; //4];
+        
+        readonly ilbc_ulp ULP_inst = null;
 
         /**
          * @param syntDenum Currently not used
@@ -38,7 +38,7 @@ namespace iLBC {
          *  (subrutine for StateSearchW)
          *---------------------------------------------------------------*/
 
-        void AbsQuantW(
+        private void AbsQuantW(
             float[] _in,          /* (i) vector to encode */
             int in_idx,
             float[] syntDenum,   /* (i) denominator of synthesis filter */
@@ -133,7 +133,7 @@ namespace iLBC {
          *  encoding of start state
          *---------------------------------------------------------------*/
 
-        void StateSearchW(
+        private void StateSearchW(
             float[] residual,/* (i) target residual vector */
             int residual_idx,
             float[] syntDenum,   /* (i) lpc synthesis filter */
@@ -235,7 +235,7 @@ namespace iLBC {
          *  conversion from lpc coefficients to lsf coefficients
          *---------------------------------------------------------------*/
 
-        void a2lsf(
+        private static void a2lsf(
             float[] freq,/* (o) lsf coefficients */
             int freq_idx,
             float[] a)    /* (i) lpc coefficients */
@@ -373,7 +373,7 @@ namespace iLBC {
          *  lpc analysis (subrutine to LPCencode)
          *---------------------------------------------------------------*/
 
-        void SimpleAnalysis(
+        private void SimpleAnalysis(
             float[] lsf,         /* (o) lsf coefficients */
             float[] data)    /* (i) new data vector */
         {
@@ -429,7 +429,7 @@ namespace iLBC {
          *  (subrutine to SimpleInterpolateLSF)
          *---------------------------------------------------------------*/
 
-        void LSFinterpolate2a_enc(
+        private static void LSFinterpolate2a_enc(
             float[] a,       /* (o) lpc coefficients */
             float[] lsf1,/* (i) first set of lsf coefficients */
             float[] lsf2,/* (i) second set of lsf coefficients */
@@ -448,7 +448,7 @@ namespace iLBC {
          *  lsf interpolator (subrutine to LPCencode)
          *---------------------------------------------------------------*/
 
-        void SimpleInterpolateLSF(
+        private void SimpleInterpolateLSF(
             float[] syntdenum,   /* (o) the synthesis filter denominator
                                   resulting from the quantized
                                   interpolated lsf */
@@ -543,7 +543,7 @@ namespace iLBC {
          *  lsf quantizer (subrutine to LPCencode)
          *---------------------------------------------------------------*/
 
-        void SimplelsfQ(
+        private void SimplelsfQ(
                 float[] lsfdeq,    /* (o) dequantized lsf coefficients
                               (dimension FILTERORDER) */
                 int[] index,     /* (o) quantization index */
@@ -572,7 +572,7 @@ namespace iLBC {
          *  lpc encoder
          *---------------------------------------------------------------*/
 
-        void LPCencode(
+        private void LPCencode(
             float[] syntdenum, /* (i/o) synthesis filter coefficients
                                   before/after encoding */
             float[] weightdenum, /* (i/o) weighting denumerator
@@ -604,7 +604,7 @@ namespace iLBC {
             //       System.out.println("syntdenum[" + li +"] is worth " + syntdenum[li]);
         }
 
-        public void iCBSearch(
+        private void iCBSearch(
                   int[] index,         /* (o) Codebook indices */
            int index_idx,
            int[] gain_index,/* (o) Gain quantization indices */
@@ -845,6 +845,7 @@ namespace iLBC {
 
                 base_index = best_index;
 
+#pragma warning disable 0162
                 /* unrestricted search */
 
                 if (ilbc_constants.CB_RESRANGE == -1) {
@@ -854,8 +855,9 @@ namespace iLBC {
                     sIndAug = 20;
                     eIndAug = 39;
                 }
+#pragma warning restore 0162
 
-                /* restricted search around best index from first
+                    /* restricted search around best index from first
                 codebook section */
                 else {
                     /* Initialize search indices */
@@ -1125,7 +1127,7 @@ namespace iLBC {
             gain_index[gain_index_idx + 0] = j;
         }
 
-        public void index_conv_enc(int[] index)          /* (i/o) Codebook indexes */
+        private static void index_conv_enc(int[] index)          /* (i/o) Codebook indexes */
         {
             int k;
 
@@ -1141,7 +1143,7 @@ namespace iLBC {
             }
         }
 
-        public void hpInput(
+        private static void hpInput(
            float[] In,  /* (i) vector to filter */
            int len,    /* (i) length of vector to filter */
            float[] Out, /* (o) the resulting filtered vector */
@@ -1199,7 +1201,7 @@ namespace iLBC {
          *  calculation of auto correlation
          *---------------------------------------------------------------*/
 
-        public void autocorr(
+        private static void autocorr(
            float[] r,       /* (o) autocorrelation vector */
            float[] x, /* (i) data vector */
            int N,          /* (i) length of data vector */
@@ -1222,7 +1224,7 @@ namespace iLBC {
          *  window multiplication
          *---------------------------------------------------------------*/
 
-        public void window(
+        private static void window(
            float[] z,       /* (o) the windowed data */
            float[] x, /* (i) the original data vector */
            float[] y, /* (i) the window */
@@ -1240,7 +1242,7 @@ namespace iLBC {
          *  levinson-durbin solution for lpc coefficients
          *---------------------------------------------------------------*/
 
-        public void levdurb(
+        private static void levdurb(
            float[] a,       /* (o) lpc coefficient vector starting
                               with 1.0f */
            float[] k,       /* (o) reflection coefficients */
@@ -1282,7 +1284,7 @@ namespace iLBC {
          *  vector quantization
          *---------------------------------------------------------------*/
 
-        public void vq(
+        private static void vq(
            float[] Xq,      /* (o) the quantized vector */
            int Xq_idx,
            int[] index,     /* (o) the quantization index */
@@ -1325,7 +1327,7 @@ namespace iLBC {
          *  split vector quantization
          *---------------------------------------------------------------*/
 
-        public void SplitVQ(
+        private static void SplitVQ(
            float[] qX,      /* (o) the quantized vector */
            int qX_idx,
            int[] index,     /* (o) a vector of indexes for all vector
@@ -1353,7 +1355,7 @@ namespace iLBC {
          *  scalar quantization
          *---------------------------------------------------------------*/
 
-        public float sort_sq( /* on renvoie xq et on modifie index par effet de bord */
+        private static float sort_sq( /* on renvoie xq et on modifie index par effet de bord */
             //              float *xq,      /* (o) the quantized value */
                   int[] index,     /* (o) the quantization index */
                   int index_idx,
@@ -1389,7 +1391,7 @@ namespace iLBC {
          *  Classification of subframes to localize start state
          *--------------------------------------------------------------*/
 
-        int FrameClassify(      /* index to the max-energy sub-frame */
+        private int FrameClassify(      /* index to the max-energy sub-frame */
                   float[] residual)     /* (i) lpc residual signal */
         {
             float max_ssqEn;
@@ -1488,7 +1490,7 @@ namespace iLBC {
         }
 
         /* from anaFilter.c, perform LP analysis filtering */
-        private void anaFilter(float[] In, int in_idx, float[] a, int a_idx, int len, float[] Out, int out_idx, float[] mem) {
+        private static void anaFilter(float[] In, int in_idx, float[] a, int a_idx, int len, float[] Out, int out_idx, float[] mem) {
             int i, j;
             int po, pi, pm, pa;
 
@@ -1541,7 +1543,7 @@ namespace iLBC {
          *  the codebook with an additional section.
          *---------------------------------------------------------------*/
 
-        private void filteredCBvecs(float[] cbvectors, float[] mem, int mem_idx, int lMem) {
+        private static void filteredCBvecs(float[] cbvectors, float[] mem, int mem_idx, int lMem) {
             int i, j, k;
             int pp, pp1;
             float[] tempbuff2;
@@ -1580,7 +1582,7 @@ namespace iLBC {
          *  measure.
          *----------------------------------------------------------------*/
 
-        private void searchAugmentedCB(
+        private static void searchAugmentedCB(
                        int low,        /* (i) Start index for the search */
                        int high,           /* (i) End index for the search */
                        int stage,          /* (i) Current stage */
@@ -1702,7 +1704,7 @@ namespace iLBC {
          *
          *----------------------------------------------------------------*/
 
-        private void createAugmentedVec(int index, float[] buffer, int buffer_idx, float[] cbVec) {
+        private static void createAugmentedVec(int index, float[] buffer, int buffer_idx, float[] cbVec) {
             int ilow, j;
             int pp, ppo, ppi;
             float alfa, alfa1, weighted;
@@ -1826,7 +1828,7 @@ namespace iLBC {
 
         }
 
-        public void iLBC_encode(
+        private void iLBC_encode(
                     bitstream bytes,           /* (o) encoded data bits iLBC */
                     float[] block)                   /* (o) speech vector to encode */
         {
